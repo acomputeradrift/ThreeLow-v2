@@ -26,7 +26,7 @@
 }
 
 - (void)holdDie:(int)index{
-    Dice *holder = [self.allRollsArray objectAtIndex:index]; //loads die at index from array and loading into a Dice object
+    Dice *holder = [self.allRollsArray objectAtIndex:index-1]; //loads die at index from array and loading into a Dice object
     [self.holdDieSet addObject:holder]; //adds Dice object to held die set
 }
 
@@ -46,7 +46,8 @@
 - (void)rollDie{
     for (int i=0; i<5; i++) {
         Dice *die = [self.allRollsArray objectAtIndex:i];
-        [die roll];
+        if (![self.holdDieSet containsObject:die])
+            [die roll];
     }
 }
 @end
