@@ -7,11 +7,41 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Dice.h"
+#import "InputHandler.h"
+#import "GameController.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        // insert code here...
-        NSLog(@"Hello, World!");
+        
+        GameController *gameController = [[GameController alloc] init];
+        
+        for (int i=0; i<5; i++) {
+            Dice *die = [[Dice alloc] init];
+            [gameController.allRollsArray addObject:die];
+        }
+        
+        
+        while (YES){
+            InputHandler *input = [[InputHandler alloc] init];
+            NSLog(@"Enter your command:");
+            NSString *result = [input getInput];
+            
+            if ([result isEqualToString:@"roll"]){
+                NSMutableString *yourHand = [[NSMutableString alloc] initWithString:@"The die rolled these :"];
+                
+                
+                for (int i=0; i<5; i++) {
+                    Dice *die = [gameController.allRollsArray objectAtIndex:i];
+                    [die roll];
+                    [yourHand appendFormat:@"\n     %@",die.description];
+                }
+                NSLog(@"%@", yourHand);
+                if ([result isEqualToString:@"quit"]){
+                    break;
+                }
+            }
+        }
+        return 0;
     }
-    return 0;
 }
