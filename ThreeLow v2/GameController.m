@@ -27,11 +27,16 @@
 
 - (void)holdDie:(int)index{
     Dice *holder = [self.allRollsArray objectAtIndex:index-1]; //loads die at index from array and loading into a Dice object
+    if ([self.holdDieSet containsObject:holder]){
+        [self.holdDieSet removeObject:holder]; 
+    }
+    else{
     [self.holdDieSet addObject:holder]; //adds Dice object to held die set
+    }
 }
 
 - (NSString *)description{
-    NSMutableString *yourHand = [[NSMutableString alloc] initWithString:@"The die rolled these :"];
+    NSMutableString *yourHand = [[NSMutableString alloc] initWithString:@"Here are the results :"];
     for (int i=0; i<5; i++) {
         Dice *die = [self.allRollsArray objectAtIndex:i]; //load objects from array to a Dice instance
         if ([self.holdDieSet containsObject:die]){

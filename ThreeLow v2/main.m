@@ -28,6 +28,7 @@ int main(int argc, const char * argv[]) {
             }
             else if ([result hasPrefix:@"hold"]){
                 [gameController holdDie:[input getHoldIndex:result]];//gets index from user, pass as message to HoldDie method in gameController class
+                NSLog (@"%@", gameController);
             }
             else if ([result isEqualToString:@"quit"]){
                     break;
