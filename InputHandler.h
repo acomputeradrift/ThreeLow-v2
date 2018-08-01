@@ -13,4 +13,6 @@
 @property NSString *input;
 
 -(NSString *)getInput;
+
+-(int) getHoldIndex :(NSString*)holdInput;
 @end

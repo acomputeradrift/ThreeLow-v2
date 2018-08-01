@@ -15,33 +15,25 @@ int main(int argc, const char * argv[]) {
     @autoreleasepool {
         
         GameController *gameController = [[GameController alloc] init];
-        
-        for (int i=0; i<5; i++) {
-            Dice *die = [[Dice alloc] init];
-            [gameController.allRollsArray addObject:die];
-        }
-        
+        InputHandler *input = [[InputHandler alloc] init];
         
         while (YES){
-            InputHandler *input = [[InputHandler alloc] init];
-            NSLog(@"Enter your command:");
-            NSString *result = [input getInput];
             
-            if ([result isEqualToString:@"roll"]){
-                NSMutableString *yourHand = [[NSMutableString alloc] initWithString:@"The die rolled these :"];
-                
-                
-                for (int i=0; i<5; i++) {
-                    Dice *die = [gameController.allRollsArray objectAtIndex:i];
-                    [die roll];
-                    [yourHand appendFormat:@"\n     %@",die.description];
-                }
-                NSLog(@"%@", yourHand);
-                if ([result isEqualToString:@"quit"]){
+            NSLog(@"Enter your command:");
+            NSString *result = [input getInput]; //init a NSString with result of getInput Method
+            
+            if ([result isEqualToString:@"roll"]){ //compare
+                [gameController rollDie]; //getting roll from game controller
+                NSLog (@"%@", gameController); //Logging roll
+            }
+            else if ([result hasPrefix:@"hold"]){
+                [gameController holdDie:[input getHoldIndex:result]];//gets index from user, pass as message to HoldDie method in gameController class
+            }
+            else if ([result isEqualToString:@"quit"]){
                     break;
                 }
             }
         }
         return 0;
     }
-}
+

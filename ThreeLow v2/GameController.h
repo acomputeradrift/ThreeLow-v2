@@ -10,9 +10,9 @@
 
 @interface GameController : NSObject
 
-@property NSMutableArray* holdDieArray;
+@property NSMutableSet* holdDieSet;
 @property NSMutableArray* allRollsArray;
 
 - (void) holdDie: (int)number;
-
+- (void) rollDie;
 @end

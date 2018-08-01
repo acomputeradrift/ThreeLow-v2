@@ -23,5 +23,17 @@
     
     return result;
 }
+
+- (int)getHoldIndex:(NSString *)holdInput
+{
+    NSArray *holdInputWithIndex= [holdInput componentsSeparatedByString:@" "];//taking holdInput passing an argument to the method componentSep... and loading to inputUtility
+    int indexnumber = 0;
+    if ([holdInputWithIndex count] == 2)
+    {
+        NSString *indexString = [holdInputWithIndex objectAtIndex:1]; // grabs the index part of input
+        indexnumber = [indexString intValue]; // turns the index part of input in int
+    }
+    return indexnumber;
+}
 @end
 
