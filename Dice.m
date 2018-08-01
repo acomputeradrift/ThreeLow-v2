@@ -11,12 +11,12 @@
 @implementation Dice
 
 - (int)roll{
-    self.currentValue = arc4random_uniform(5);
+    self.currentValue = arc4random_uniform(6)+1;
     return _currentValue;
 }
 - (NSString *)description
 {
     NSArray *dicePictures = @[@"⚀", @"⚁", @"⚂", @"⚃", @"⚄", @"⚅"];
-    return [NSString stringWithFormat:@"%@", dicePictures[self.currentValue]];
+    return [NSString stringWithFormat:@"%@", dicePictures[self.currentValue-1]];
 }
 @end

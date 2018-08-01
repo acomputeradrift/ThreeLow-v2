@@ -15,4 +15,5 @@
 
 - (void) holdDie: (int)number;
 - (void) rollDie;
+- (void) resetDice;
 @end

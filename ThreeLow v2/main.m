@@ -24,15 +24,17 @@ int main(int argc, const char * argv[]) {
             
             if ([result isEqualToString:@"roll"]){ //compare
                 [gameController rollDie]; //getting roll from game controller
-                NSLog (@"%@", gameController); //Logging roll
             }
             else if ([result hasPrefix:@"hold"]){
                 [gameController holdDie:[input getHoldIndex:result]];//gets index from user, pass as message to HoldDie method in gameController class
-                NSLog (@"%@", gameController);
+            }
+            else if ([result isEqualToString:@"reset"]) {
+                [gameController resetDice];
             }
             else if ([result isEqualToString:@"quit"]){
                     break;
                 }
+            NSLog (@"%@", gameController);
             }
         }
         return 0;

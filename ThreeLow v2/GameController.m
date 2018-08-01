@@ -37,14 +37,17 @@
 
 - (NSString *)description{
     NSMutableString *yourHand = [[NSMutableString alloc] initWithString:@"Here are the results :"];
+    int score = 0;
     for (int i=0; i<5; i++) {
         Dice *die = [self.allRollsArray objectAtIndex:i]; //load objects from array to a Dice instance
+        score += die.currentValue;
         if ([self.holdDieSet containsObject:die]){
             [yourHand appendFormat:@"\n     [%@]",die.description];
         }
           else
         [yourHand appendFormat:@"\n     %@",die.description]; //
     }
+    [yourHand appendFormat:@"\nScore %i",score];
     return yourHand;
 }
 
@@ -54,5 +57,8 @@
         if (![self.holdDieSet containsObject:die])
             [die roll];
     }
+}
+- (void)resetDice{
+    [self.holdDieSet removeAllObjects];
 }
 @end
